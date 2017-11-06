@@ -12,5 +12,8 @@
     "api"
   ],
   "author": "Shubhamoy Chakrabarty <me@shubhamoy.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
