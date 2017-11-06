@@ -1,0 +1,16 @@
+{
+  "name": "rest-api",
+  "version": "0.0.1",
+  "description": "REST API using Node, Express, and Mongo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodeapi",
+    "restapi",
+    "api"
+  ],
+  "author": "Shubhamoy Chakrabarty <me@shubhamoy.com>",
+  "license": "ISC"
+}
