@@ -28,6 +28,6 @@ export const ContactSchema = new Schema({
   },
   deleted_at: {
     type: Date,
-    default: NULL
+    default: null
   }
 });
