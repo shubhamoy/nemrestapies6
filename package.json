@@ -7,10 +7,17 @@
     "start": "nodemon ./index.js --exec babel-node -e js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shubhamoy/nemrestapies6.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shubhamoy/nemrestapies6/issues"
+  },
+  "homepage": "https://github.com/shubhamoy/nemrestapies6",
   "keywords": [
-    "nodeapi",
     "restapi",
-    "api"
+    "es6"
   ],
   "author": "Shubhamoy Chakrabarty <me@shubhamoy.com>",
   "license": "GPL-3.0+",
