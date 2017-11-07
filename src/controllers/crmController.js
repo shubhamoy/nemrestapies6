@@ -16,7 +16,7 @@ export const addNewContact = (req, res) => {
 };
 
 export const getContacts = (req, res) => {
-  Contact.find({}, (err, contact) => {
+  Contact.find({"deleted_at":null}, (err, contact) => {
     if(err) {
       res.send(err);
     }
@@ -44,3 +44,16 @@ export const updateContact = (req, res) => {
     res.json(contact);
   })
 };
+
+export const deleteContact = (req, res) => {
+  req.body.deleted_at = Date.now();
+  Contact.findOneAndUpdate({ _id: req.params.contactId },
+                           req.body, { new: true },
+                           (err, contact) => {
+  if(err) {
+    res.send(err);
+  }
+  res.send("Contact Deleted Successfully");
+  })
+};
+
