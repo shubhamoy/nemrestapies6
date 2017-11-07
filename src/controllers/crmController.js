@@ -32,3 +32,15 @@ export const getContact = (req, res) => {
     res.json(contact);
  });
 };
+
+export const updateContact = (req, res) => {
+  req.body.updated_at = Date.now();
+  Contact.findOneAndUpdate({ _id: req.params.contactId }, 
+                           req.body, { new: true }, 
+                           (err, contact) => {
+    if(err) {
+      res.send(err);
+    }
+    res.json(contact);
+  })
+};
