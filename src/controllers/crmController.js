@@ -29,31 +29,54 @@ export const getContact = (req, res) => {
     if(err) {
       res.send(err);
     }
-    res.json(contact);
+    
+    if(contact.deleted_at) {
+      res.send("Record Not Found");
+    } else {
+      res.json(contact);
+    }
  });
 };
 
 export const updateContact = (req, res) => {
-  req.body.updated_at = Date.now();
-  Contact.findOneAndUpdate({ _id: req.params.contactId }, 
-                           req.body, { new: true }, 
-                           (err, contact) => {
+  Contact.findById(req.params.contactId, (err, contact) => {
     if(err) {
       res.send(err);
     }
-    res.json(contact);
-  })
+
+    if(!contact.deleted_at) {
+      req.body.updated_at = Date.now();
+      Contact.findOneAndUpdate({ _id: req.params.contactId }, 
+                                 req.body, { new: true }, 
+                                 (err, contact) => {
+      if(err) {
+        res.send(err);
+      }
+      res.json(contact);
+      })
+   } else {
+     res.send("Record Not Found");
+   }
+ })
 };
 
 export const deleteContact = (req, res) => {
-  req.body.deleted_at = Date.now();
-  Contact.findOneAndUpdate({ _id: req.params.contactId },
-                           req.body, { new: true },
-                           (err, contact) => {
-  if(err) {
-    res.send(err);
-  }
-  res.send("Contact Deleted Successfully");
+  Contact.findById(req.params.contactId, (err, contact) => {
+    if(err) {
+      res.send(err);
+    }
+
+    if(!contact.deleted_at) {
+      req.body.deleted_at = Date.now();
+      Contact.findOneAndUpdate({ _id: req.params.contactId },
+                               req.body, { new: true },
+                               (err, contact) => {
+        if(err) {
+          res.send(err);
+        }
+        res.send("Contact Deleted Successfully");
+      })
+    }
   })
 };
 
