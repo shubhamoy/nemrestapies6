@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 import { ContactSchema } from '../models/crmModel';
 
 const Contact = mongoose.model('Contact', ContactSchema);
@@ -20,5 +21,5 @@ export const getContacts = (req, res) => {
       res.send(err);
     }
     res.json(contact);
-});
+  });
 }
