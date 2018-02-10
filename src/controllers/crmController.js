@@ -9,31 +9,31 @@ export const addNewContact = (req, res) => {
   
   newContact.save((err, contact) => {
     if(err) {
-      res.send(err);
+      return res.send(err);
     }
-    res.json(contact);
+    return res.json(contact);
   });
 };
 
 export const getContacts = (req, res) => {
   Contact.find({"deleted_at":null}, (err, contact) => {
     if(err) {
-      res.send(err);
+      return res.send(err);
     }
-    res.json(contact);
+    return res.json(contact);
   });
 };
 
 export const getContact = (req, res) => {
   Contact.findById(req.params.contactId, (err, contact) => {
     if(err) {
-      res.send(err);
+      return res.send(err);
     }
     
     if(contact.deleted_at) {
-      res.send("Record Not Found");
+      return res.send("Record Not Found");
     } else {
-      res.json(contact);
+      return res.json(contact);
     }
  });
 };
@@ -41,7 +41,7 @@ export const getContact = (req, res) => {
 export const updateContact = (req, res) => {
   Contact.findById(req.params.contactId, (err, contact) => {
     if(err) {
-      res.send(err);
+      return res.send(err);
     }
 
     if(!contact.deleted_at) {
@@ -50,12 +50,12 @@ export const updateContact = (req, res) => {
                                  req.body, { new: true }, 
                                  (err, contact) => {
       if(err) {
-        res.send(err);
+        return res.send(err);
       }
-      res.json(contact);
+      return res.json(contact);
       })
    } else {
-     res.send("Record Not Found");
+     return res.send("Record Not Found");
    }
  })
 };
@@ -63,7 +63,7 @@ export const updateContact = (req, res) => {
 export const deleteContact = (req, res) => {
   Contact.findById(req.params.contactId, (err, contact) => {
     if(err) {
-      res.send(err);
+      return res.send(err);
     }
 
     if(!contact.deleted_at) {
@@ -72,9 +72,9 @@ export const deleteContact = (req, res) => {
                                req.body, { new: true },
                                (err, contact) => {
         if(err) {
-          res.send(err);
+          return res.send(err);
         }
-        res.send("Contact Deleted Successfully");
+        return res.send("Contact Deleted Successfully");
       })
     }
   })
